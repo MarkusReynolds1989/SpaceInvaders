@@ -14,14 +14,9 @@ namespace SpaceInvaders
             public float Speed = 5;
             public bool Active;
 
-            public int Width
-            {
-                get { return Texture.Width; }
-            }
-            public int Height
-            {
-                get { return Texture.Height; }
-            }
+            public int Width => Texture.Width;
+
+            public int Height => Texture.Height;
 
             public void Initialize(Texture2D texture, Vector2 position)
             {

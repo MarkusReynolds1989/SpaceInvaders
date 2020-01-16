@@ -14,7 +14,7 @@
         "outputPath": "C:\\Users\\MR071411\\Desktop\\FunCode\\CSharp\\SpaceInvaders\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Microsoft\\Xamarin\\NuGet",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [

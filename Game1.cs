@@ -8,43 +8,41 @@ namespace SpaceInvaders
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Texture2D Ship;
-        private Texture2D PlayerBullet;
-        private Texture2D Enemy;
-        private Player player;
-        private List<PlayerBullet> bullets;
-        private List<Enemy> enemies;
-        const int SCREEN_WIDTH = 600;
-        const int SCREEN_HEIGHT = 800;
+        private Texture2D _ship;
+        private Texture2D _playerBullet;
+        private Texture2D _enemy;
+        private Player _player;
+        private List<PlayerBullet> _bullets;
+        private List<Enemy> _enemies;
+        private const int ScreenWidth = 600;
+        private const int ScreenHeight = 800;
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
-            _graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
-            _graphics.ApplyChanges();
+            var graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = ScreenWidth;
+            graphics.PreferredBackBufferHeight = ScreenHeight;
+            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
-            bullets = new List<PlayerBullet>();
-            enemies = new List<Enemy>();
-            player = new Player();
-            player.Position = new Vector2(0, SCREEN_HEIGHT - 96);
+            _bullets = new List<PlayerBullet>();
+            _enemies = new List<Enemy>();
+            _player = new Player {Position = new Vector2(0, ScreenHeight - 96)};
+            InitEnemies();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Ship = Content.Load<Texture2D>("Ship");
-            PlayerBullet = Content.Load<Texture2D>("PlayerBullet");
-            Enemy = Content.Load<Texture2D>("Enemy");
-            InitEnemies();
+            _ship = Content.Load<Texture2D>("Ship");
+            _playerBullet = Content.Load<Texture2D>("PlayerBullet");
+            _enemy = Content.Load<Texture2D>("Enemy");
         }
 
         protected override void Update(GameTime gameTime)
@@ -60,15 +58,15 @@ namespace SpaceInvaders
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
-            foreach (var b in bullets)
+            foreach (var b in _bullets)
             {
                 b.Draw(_spriteBatch);
             }
-            foreach (var e in enemies)
+            foreach (var e in _enemies)
             {
                 e.Draw(_spriteBatch);
             }
-            _spriteBatch.Draw(Ship, player.Position, Color.White);
+            _spriteBatch.Draw(_ship, _player.Position, Color.White);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -77,14 +75,14 @@ namespace SpaceInvaders
         {
             var state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Right)
-                && player.Position.X <= SCREEN_WIDTH - 96)
+                && _player.Position.X <= ScreenWidth - _player.Width)
             {
-                player.Position.X += 2;
+                _player.Position.X += 2;
             }
             if (state.IsKeyDown(Keys.Left)
-                && player.Position.X >= 0)
+                && _player.Position.X >= 0)
             {
-                player.Position.X -= 2;
+                _player.Position.X -= 2;
             }
 
             if (state.IsKeyDown(Keys.Space))
@@ -94,29 +92,27 @@ namespace SpaceInvaders
 
             UpdateBullets(gameTime);
             UpdateEnemies(gameTime);
-            foreach (var bl in bullets)
+            foreach (var bl in _bullets)
             {
-                foreach (var en in enemies)
+                foreach (var en in _enemies)
                 {
                     {
-                        if(Collision(bl.Position.X
+                        if (!Collision(bl.Position.X
                             , bl.Position.Y
                             , bl.Texture.Width
                             , bl.Texture.Height
                             , en.Position.X
                             , en.Position.Y
                             , en.Texture.Width
-                            , en.Texture.Height))
-                        {
-                            en.Active = false;
-                            bl.Active = false;
-                        }
+                            , en.Texture.Height)) continue;
+                        en.Active = false;
+                        bl.Active = false;
                     }
                 }
             }
         }
 
-        private bool Collision(float xFirstPos
+        private static bool Collision(float xFirstPos
             , float yFirstPos
             , float firstWidth
             , float firstHeight
@@ -125,43 +121,39 @@ namespace SpaceInvaders
             , float secondWidth
             , float secondHeight)
         {
-            if ((xFirstPos < (xSecondPos + firstWidth)
-                && (xFirstPos + firstWidth) > xSecondPos 
-                && yFirstPos < (ySecondPos + secondWidth)
-                && yFirstPos + firstHeight > (ySecondPos)))
-            {
-                return true;
-            }
-            return false;
+            return xFirstPos < (xSecondPos + firstWidth)
+                   && (xFirstPos + firstWidth) > xSecondPos 
+                   && yFirstPos < (ySecondPos + secondWidth)
+                   && yFirstPos + firstHeight > (ySecondPos);
         }
 
         private void UpdateBullets(GameTime gameTime)
         {
-            for (var i = 0; i < bullets.Count; i++)
+            for (var i = 0; i < _bullets.Count; i++)
             {
-                bullets[i].Update(gameTime);
-                if (!bullets[i].Active || bullets[i].Position.Y == 0)
+                _bullets[i].Update(gameTime);
+                if (!_bullets[i].Active || Math.Abs(_bullets[i].Position.Y) < 0)
                 {
-                    bullets.Remove(bullets[i]);
+                    _bullets.Remove(_bullets[i]);
                 }
             }
         }
         private void UpdateEnemies(GameTime gameTime)
         {
-            for (var i = 0; i < enemies.Count; i++)
+            for (var i = 0; i < _enemies.Count; i++)
             {
-                enemies[i].Update(gameTime);
-                if (!enemies[i].Active)
+                _enemies[i].Update(gameTime);
+                if (!_enemies[i].Active)
                 {
-                    enemies.Remove(enemies[i]);
+                    _enemies.Remove(_enemies[i]);
                 }
             }
         }
         private void CreateBullet()
         {
             var bullet = new PlayerBullet();
-            bullet.Initialize(PlayerBullet, new Vector2(player.Position.X + 45, player.Position.Y - 10));
-            bullets.Add(bullet);
+            bullet.Initialize(_playerBullet, new Vector2(_player.Position.X + 45, _player.Position.Y - 10));
+            _bullets.Add(bullet);
         }
 
         private void InitEnemies()
@@ -171,8 +163,8 @@ namespace SpaceInvaders
                 for (var j = 0; j < 250; j += 50)
                 {
                     var enemy = new Enemy();
-                    enemy.Initialize(Enemy, new Vector2(i, j));
-                    enemies.Add(enemy);
+                    enemy.Initialize(_enemy, new Vector2(i, j));
+                    _enemies.Add(enemy);
                 }
             }
         }

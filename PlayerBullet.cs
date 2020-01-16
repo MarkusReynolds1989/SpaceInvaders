@@ -11,17 +11,12 @@ namespace SpaceInvaders
     {
         public Texture2D Texture;
         public Vector2 Position;
-        public float Speed = 5;
+        private float _speed = 5;
         public bool Active;
         
-        public int Width
-        {
-            get { return Texture.Width; }
-        }
-        public int Height
-        {
-            get { return Texture.Height; }
-        }
+        public int Width => Texture.Width;
+
+        public int Height => Texture.Height;
 
         public void Initialize(Texture2D texture, Vector2 position)
         {
@@ -32,7 +27,7 @@ namespace SpaceInvaders
 
         public void Update(GameTime gameTime)
         {
-            Position.Y -= Speed; 
+            Position.Y -= _speed; 
         }
 
         public void Draw(SpriteBatch spriteBatch)
