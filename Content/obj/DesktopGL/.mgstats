@@ -1,2 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/PlayerBullet.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/PlayerBullet.xnb","TextureProcessor","Texture2DContent",149,1541,0.3440925
 "C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Ship.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Ship.xnb","TextureProcessor","Texture2DContent",634,36949,0.656204
