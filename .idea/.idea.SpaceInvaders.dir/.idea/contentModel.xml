@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
+    <e p="C:\Users\MR071411\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\MR071411\.nuget\packages\microsoft.testplatform.testhost\16.4.0\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\MR071411\.nuget\packages\nunit3testadapter\3.16.0\build\netcoreapp2.1\nunit.engine.api.dll" t="Include" />
+    <e p="C:\Users\MR071411\.nuget\packages\nunit3testadapter\3.16.0\build\netcoreapp2.1\nunit.engine.dll" t="Include" />
+    <e p="C:\Users\MR071411\.nuget\packages\nunit3testadapter\3.16.0\build\netcoreapp2.1\NUnit3.TestAdapter.dll" t="Include" />
+    <e p="C:\Users\MR071411\.nuget\packages\nunit3testadapter\3.16.0\build\netcoreapp2.1\NUnit3.TestAdapter.pdb" t="Include" />
     <e p="C:\Users\MR071411\.Rider2019.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\MR071411\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_.19.00" t="ExcludeRecursive" />
     <e p="C:\Users\MR071411\Desktop\FunCode\CSharp\SpaceInvaders" t="IncludeRecursive">
       <e p="app.manifest" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
+      <e p="Collision.cs" t="Include" />
       <e p="Content" t="Include">
         <e p="bin" t="Include">
           <e p="DesktopGL" t="Include">
             <e p="Content" t="Include">
               <e p="Enemy.xnb" t="Include" />
               <e p="PlayerBullet.xnb" t="Include" />
+              <e p="Score.xnb" t="Include" />
               <e p="Ship.xnb" t="Include" />
             </e>
             <e p="Enemy.xnb" t="Include" />
             <e p="PlayerBullet.xnb" t="Include" />
+            <e p="Score.xnb" t="Include" />
             <e p="Ship.xnb" t="Include" />
           </e>
         </e>
@@ -29,14 +38,17 @@
               <e p=".mgcontent" t="Include" />
               <e p="Enemy.mgcontent" t="Include" />
               <e p="PlayerBullet.mgcontent" t="Include" />
+              <e p="Score.mgcontent" t="Include" />
               <e p="Ship.mgcontent" t="Include" />
             </e>
             <e p="Enemy.mgcontent" t="Include" />
             <e p="PlayerBullet.mgcontent" t="Include" />
+            <e p="Score.mgcontent" t="Include" />
             <e p="Ship.mgcontent" t="Include" />
           </e>
         </e>
         <e p="PlayerBullet.png" t="Include" />
+        <e p="Score.spritefont" t="Include" />
         <e p="Ship.png" t="Include" />
       </e>
       <e p="Enemy.cs" t="Include" />
@@ -56,6 +68,7 @@
       <e p="PlayerBullet.cs" t="Include" />
       <e p="Program.cs" t="Include" />
       <e p="SpaceInvaders.csproj" t="IncludeRecursive" />
+      <e p="Test.cs" t="Include" />
     </e>
   </component>
 </project>

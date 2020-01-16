@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Enemy.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Enemy.xnb","TextureProcessor","Texture2DContent",215,5685,0.1536234
-"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/PlayerBullet.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/PlayerBullet.xnb","TextureProcessor","Texture2DContent",149,1541,0
-"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Ship.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Ship.xnb","TextureProcessor","Texture2DContent",634,36949,0.015619
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Enemy.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Enemy.xnb","TextureProcessor","Texture2DContent",215,5685,0.6143543
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/PlayerBullet.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/PlayerBullet.xnb","TextureProcessor","Texture2DContent",149,1541,0.0757713
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Score.spritefont","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Score.xnb","FontDescriptionProcessor","SpriteFontContent",2011,37905,0.571943
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Ship.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Ship.xnb","TextureProcessor","Texture2DContent",634,36949,0.1943666
