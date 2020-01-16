@@ -99,22 +99,40 @@ namespace SpaceInvaders
                 foreach (var en in enemies)
                 {
                     {
-                        Collision(bl, en);
+                        if(Collision(bl.Position.X
+                            , bl.Position.Y
+                            , bl.Texture.Width
+                            , bl.Texture.Height
+                            , en.Position.X
+                            , en.Position.Y
+                            , en.Texture.Width
+                            , en.Texture.Height))
+                        {
+                            en.Active = false;
+                            bl.Active = false;
+                        }
                     }
                 }
             }
         }
 
-        private static void Collision(PlayerBullet bl, Enemy en)
+        private bool Collision(float xFirstPos
+            , float yFirstPos
+            , float firstWidth
+            , float firstHeight
+            , float xSecondPos
+            , float ySecondPos
+            , float secondWidth
+            , float secondHeight)
         {
-            if ((bl.Position.X < (en.Position.X + bl.Texture.Width)
-                && (bl.Position.X + bl.Texture.Width) > en.Position.X
-                && bl.Position.Y < (en.Position.Y + en.Texture.Width)
-                && bl.Position.Y + bl.Texture.Height > (en.Position.Y)))
+            if ((xFirstPos < (xSecondPos + firstWidth)
+                && (xFirstPos + firstWidth) > xSecondPos 
+                && yFirstPos < (ySecondPos + secondWidth)
+                && yFirstPos + firstHeight > (ySecondPos)))
             {
-                en.Active = false;
-                bl.Active = false;
+                return true;
             }
+            return false;
         }
 
         private void UpdateBullets(GameTime gameTime)
