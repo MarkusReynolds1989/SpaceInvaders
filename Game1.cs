@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace SpaceInvaders
@@ -11,28 +12,39 @@ namespace SpaceInvaders
         private SpriteBatch _spriteBatch;
         private Texture2D Ship;
         private Texture2D PlayerBullet;
-        private Vector2 Position;
+        private Texture2D Enemy;
+        private Player player;
         private List<PlayerBullet> bullets;
+        private List<Enemy> enemies;
+        const int SCREEN_WIDTH = 600;
+        const int SCREEN_HEIGHT = 800;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
+            _graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
+            _graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
-            Position = new Vector2(0, 380);
             bullets = new List<PlayerBullet>();
+            enemies = new List<Enemy>();
+            player = new Player();
+            player.Position = new Vector2(0, SCREEN_HEIGHT - 96);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Ship = this.Content.Load<Texture2D>("Ship");
-            PlayerBullet = this.Content.Load<Texture2D>("PlayerBullet");
+            Ship = Content.Load<Texture2D>("Ship");
+            PlayerBullet = Content.Load<Texture2D>("PlayerBullet");
+            Enemy = Content.Load<Texture2D>("Enemy");
+            InitEnemies();
         }
 
         protected override void Update(GameTime gameTime)
@@ -48,11 +60,15 @@ namespace SpaceInvaders
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
-            foreach(var b in bullets)
+            foreach (var b in bullets)
             {
                 b.Draw(_spriteBatch);
             }
-            _spriteBatch.Draw(Ship, Position, Color.White);
+            foreach (var e in enemies)
+            {
+                e.Draw(_spriteBatch);
+            }
+            _spriteBatch.Draw(Ship, player.Position, Color.White);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -61,22 +77,44 @@ namespace SpaceInvaders
         {
             var state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Right)
-                && Position.X <= 700)
+                && player.Position.X <= SCREEN_WIDTH - 96)
             {
-                Position.X += 2;
+                player.Position.X += 2;
             }
             if (state.IsKeyDown(Keys.Left)
-                && Position.X >= 0)
+                && player.Position.X >= 0)
             {
-                Position.X -= 2;
+                player.Position.X -= 2;
             }
 
             if (state.IsKeyDown(Keys.Space))
             {
-                FileBullet();
+                CreateBullet();
             }
 
             UpdateBullets(gameTime);
+            UpdateEnemies(gameTime);
+            foreach (var bl in bullets)
+            {
+                foreach (var en in enemies)
+                {
+                    {
+                        Collision(bl, en);
+                    }
+                }
+            }
+        }
+
+        private static void Collision(PlayerBullet bl, Enemy en)
+        {
+            if ((bl.Position.X < (en.Position.X + bl.Texture.Width)
+                && (bl.Position.X + bl.Texture.Width) > en.Position.X
+                && bl.Position.Y < (en.Position.Y + en.Texture.Width)
+                && bl.Position.Y + bl.Texture.Height > (en.Position.Y)))
+            {
+                en.Active = false;
+                bl.Active = false;
+            }
         }
 
         private void UpdateBullets(GameTime gameTime)
@@ -90,12 +128,35 @@ namespace SpaceInvaders
                 }
             }
         }
-
-        private void FileBullet()
+        private void UpdateEnemies(GameTime gameTime)
+        {
+            for (var i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].Update(gameTime);
+                if (!enemies[i].Active)
+                {
+                    enemies.Remove(enemies[i]);
+                }
+            }
+        }
+        private void CreateBullet()
         {
             var bullet = new PlayerBullet();
-            bullet.Initialize(PlayerBullet, new Vector2(Position.X + 45, Position.Y - 10));
+            bullet.Initialize(PlayerBullet, new Vector2(player.Position.X + 45, player.Position.Y - 10));
             bullets.Add(bullet);
+        }
+
+        private void InitEnemies()
+        {
+            for (var i = 0; i < 250; i += 50)
+            {
+                for (var j = 0; j < 250; j += 50)
+                {
+                    var enemy = new Enemy();
+                    enemy.Initialize(Enemy, new Vector2(i, j));
+                    enemies.Add(enemy);
+                }
+            }
         }
     }
 }

@@ -4,10 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Enemy.png</File>
     <File>C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/PlayerBullet.png</File>
     <File>C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Ship.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

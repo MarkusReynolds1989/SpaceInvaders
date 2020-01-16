@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Ship.png</SourceFile>
-  <SourceTime>2020-01-15T08:41:39.5677737-06:00</SourceTime>
-  <DestFile>C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Ship.xnb</DestFile>
-  <DestTime>2020-01-16T09:04:57.4560999-06:00</DestTime>
+  <SourceFile>C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Enemy.png</SourceFile>
+  <SourceTime>2020-01-16T09:04:02.0291367-06:00</SourceTime>
+  <DestFile>C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Enemy.xnb</DestFile>
+  <DestTime>2020-01-16T09:04:57.4248571-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -21,3 +21,4 @@ C:\Users\MR071411\Desktop\FunCode\CSharp\SpaceInvaders\obj\Debug\netcoreapp3.0\S
 C:\Users\MR071411\Desktop\FunCode\CSharp\SpaceInvaders\obj\Debug\netcoreapp3.0\SpaceInvaders.pdb
 C:\Users\MR071411\Desktop\FunCode\CSharp\SpaceInvaders\bin\Debug\netcoreapp3.0\Content\Ship.xnb
 C:\Users\MR071411\Desktop\FunCode\CSharp\SpaceInvaders\bin\Debug\netcoreapp3.0\Content\PlayerBullet.xnb
+C:\Users\MR071411\Desktop\FunCode\CSharp\SpaceInvaders\bin\Debug\netcoreapp3.0\Content\Enemy.xnb
