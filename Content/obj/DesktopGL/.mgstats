@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"/home/mars/Documents/Code/C#/SpaceInvaders/Content/Enemy.png","/home/mars/Documents/Code/C#/SpaceInvaders/Content/bin/DesktopGL/Enemy.xnb","TextureProcessor","Texture2DContent",215,5685,0.535365
-"/home/mars/Documents/Code/C#/SpaceInvaders/Content/PlayerBullet.png","/home/mars/Documents/Code/C#/SpaceInvaders/Content/bin/DesktopGL/PlayerBullet.xnb","TextureProcessor","Texture2DContent",149,1541,0.021503
-"/home/mars/Documents/Code/C#/SpaceInvaders/Content/Score.spritefont","/home/mars/Documents/Code/C#/SpaceInvaders/Content/bin/DesktopGL/Score.xnb","FontDescriptionProcessor","SpriteFontContent",2005,37905,0.154952
-"/home/mars/Documents/Code/C#/SpaceInvaders/Content/Ship.png","/home/mars/Documents/Code/C#/SpaceInvaders/Content/bin/DesktopGL/Ship.xnb","TextureProcessor","Texture2DContent",634,36949,0.008175
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Enemy.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Enemy.xnb","TextureProcessor","Texture2DContent",419,7285,0.4348282
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/PlayerBullet.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/PlayerBullet.xnb","TextureProcessor","Texture2DContent",149,1541,0.0125497
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Score.spritefont","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Score.xnb","FontDescriptionProcessor","SpriteFontContent",2065,37905,0.2443774
+"C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/Ship.png","C:/Users/MR071411/Desktop/FunCode/CSharp/SpaceInvaders/Content/bin/DesktopGL/Ship.xnb","TextureProcessor","Texture2DContent",582,10085,0.0109743

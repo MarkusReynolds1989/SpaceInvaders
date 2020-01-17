@@ -18,7 +18,7 @@ namespace SpaceInvaders
         private List<Enemy> enemies;
         private TimeSpan bulletSpawnTime;
         private TimeSpan previousBulletSpawnTime;
-        
+        private bool gameOver = false;
         private int score = 0;
         private const int ScreenWidth = 600;
         private const int ScreenHeight = 800;
@@ -59,8 +59,11 @@ namespace SpaceInvaders
 
         protected override void Update(GameTime gameTime)
         {
-            EventHandler(gameTime);
-            base.Update(gameTime);
+            if (gameOver == false)
+            {
+                EventHandler(gameTime);
+                base.Update(gameTime);
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -154,18 +157,24 @@ namespace SpaceInvaders
         {
             foreach (var en in enemies)
             {
-                if (en.Position.X >= ScreenWidth - 400)
+                if (en.Position.X >= ScreenWidth )
                 {
-                    en.Speed = -1;
+                    en.Speed = -5;
+                    en.Position.Y += 10;
                 }
 
-                if (en.Position.X <= 0 + 400)
+                if (en.Position.X <= -40)
                 {
-                    en.Speed =  1;
+                    en.Speed =  5;
+                    en.Position.Y += 10;
                 }
 
+                if ((int)en.Position.Y == ScreenHeight)
+                {
+                    gameOver = true;
+                }
+                
                 en.Position.X += en.Speed;
-                en.Position.Y += 1;
             }
             
             for (var i = 0; i < enemies.Count; i++)
