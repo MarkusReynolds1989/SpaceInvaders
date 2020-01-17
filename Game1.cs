@@ -8,15 +8,18 @@ namespace SpaceInvaders
 {
     public class Game1 : Game
     {
-        private SpriteBatch _spriteBatch;
-        private Texture2D _ship;
-        private Texture2D _playerBullet;
-        private Texture2D _enemy;
-        private SpriteFont _font;
-        private Player _player;
-        private List<PlayerBullet> _bullets;
-        private List<Enemy> _enemies;
-        private int _score = 0;
+        private SpriteBatch spriteBatch;
+        private Texture2D ship;
+        private Texture2D playerBullet;
+        private Texture2D enemy;
+        private SpriteFont font;
+        private Player player;
+        private List<PlayerBullet> bullets;
+        private List<Enemy> enemies;
+        private TimeSpan bulletSpawnTime;
+        private TimeSpan previousBulletSpawnTime;
+        
+        private int score = 0;
         private const int ScreenWidth = 600;
         private const int ScreenHeight = 800;
 
@@ -33,21 +36,22 @@ namespace SpaceInvaders
 
         protected override void Initialize()
         {
-            _bullets = new List<PlayerBullet>();
-            _enemies = new List<Enemy>();
+            bullets = new List<PlayerBullet>();
+            enemies = new List<Enemy>();
+            bulletSpawnTime = TimeSpan.FromSeconds((0.5f));
             //TODO:ScreenHeight - (should be _player.Height but doesn't work).
-            _player = new Player {Position = new Vector2(0, ScreenHeight - 96)};
+            player = new Player {Position = new Vector2(0, ScreenHeight - 96)};
             //InitEnemies should go here but it doesn't work properly right now. 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _ship = Content.Load<Texture2D>("Ship");
-            _playerBullet = Content.Load<Texture2D>("PlayerBullet");
-            _enemy = Content.Load<Texture2D>("Enemy");
-            _font = Content.Load<SpriteFont>("Score");
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            ship = Content.Load<Texture2D>("Ship");
+            playerBullet = Content.Load<Texture2D>("PlayerBullet");
+            enemy = Content.Load<Texture2D>("Enemy");
+            font = Content.Load<SpriteFont>("Score");
             //InitEnemies has to go here because of texture loading. 
             //TODO: Find a way to move this to init.
             InitEnemies();
@@ -62,53 +66,57 @@ namespace SpaceInvaders
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            _spriteBatch.Begin();
+            spriteBatch.Begin();
             //Draw all the bullets.
-            foreach (var b in _bullets)
+            foreach (var b in bullets)
             {
-                b.Draw(_spriteBatch);
+                b.Draw(spriteBatch);
             }
             //Draw all the enemies.
-            foreach (var e in _enemies)
+            foreach (var e in enemies)
             {
-                e.Draw(_spriteBatch);
+                e.Draw(spriteBatch);
             }
             //Draw the player's Ship.
-            _spriteBatch.Draw(_ship, _player.Position, Color.White);
-            _spriteBatch.DrawString(_font,$"Score: {_score}",new Vector2(ScreenWidth - 200, 10),Color.White );     
-            _spriteBatch.End();
+            spriteBatch.Draw(ship, player.Position, Color.White);
+            //Draw Score.
+            spriteBatch.DrawString(font
+                ,$"Score: {score.ToString()}"
+                ,new Vector2(ScreenWidth - 200, 10)
+                ,Color.White );     
+            spriteBatch.End();
+            
             base.Draw(gameTime);
         }
         
         //TODO: Event handler class.
         private void EventHandler(GameTime gameTime)
         {
-            var rectangle = new Collision();
             var state = Keyboard.GetState();
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
                 || Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
             
             if (state.IsKeyDown(Keys.Right)
                 //TODO: Find out why the return width methods won't work. Texture must be added to player at the wrong time.
-                && _player.Position.X <= ScreenWidth + 96) 
+                && player.Position.X <= ScreenWidth + 96) 
             {
-                _player.Position.X += 2;
+                player.Position.X += 2;
             }
 
             if (state.IsKeyDown(Keys.Left)
-                && _player.Position.X >= 0)
+                && player.Position.X >= 0)
             {
-                _player.Position.X -= 2;
+                player.Position.X -= 2;
             }
 
             if (state.IsKeyDown(Keys.Space))
             {
-                CreateBullet();
+                CreateBullet(gameTime);
             }
 
-            foreach (var bl in _bullets)
+            foreach (var bl in bullets)
             {
-                foreach (var en in _enemies)
+                foreach (var en in enemies)
                 {
                     {
                         if (!Collision.RectangleCollision(bl.Position.X
@@ -121,7 +129,7 @@ namespace SpaceInvaders
                             , en.Texture.Height)) continue;
                         en.Active = false;
                         bl.Active = false;
-                        _score++;
+                        score++;
                     }
                 }
             }
@@ -132,49 +140,53 @@ namespace SpaceInvaders
         
         private void UpdateBullets(GameTime gameTime)
         {
-            for (var i = 0; i < _bullets.Count; i++)
+            for (var i = 0; i < bullets.Count; i++)
             {
-                _bullets[i].Update(gameTime);
-                if (!_bullets[i].Active || Math.Abs(_bullets[i].Position.Y) < 0)
+                bullets[i].Update(gameTime);
+                if (!bullets[i].Active || Math.Abs(bullets[i].Position.Y) < 0)
                 {
-                    _bullets.Remove(_bullets[i]);
+                    bullets.Remove(bullets[i]);
                 }
             }
         }
-
+        //TODO: Make the enemies move like space invaders.
         private void UpdateEnemies(GameTime gameTime)
         {
-            foreach (var enemy in _enemies)
+            foreach (var en in enemies)
             {
-                if (enemy.Position.X >= ScreenWidth - 400)
+                if (en.Position.X >= ScreenWidth - 400)
                 {
-                    enemy.Speed = -1;
+                    en.Speed = -1;
                 }
 
-                if (enemy.Position.X <= 0 + 400)
+                if (en.Position.X <= 0 + 400)
                 {
-                    enemy.Speed =  1;
+                    en.Speed =  1;
                 }
 
-                enemy.Position.X += enemy.Speed;
-                enemy.Position.Y += 1;
+                en.Position.X += en.Speed;
+                en.Position.Y += 1;
             }
             
-            for (var i = 0; i < _enemies.Count; i++)
+            for (var i = 0; i < enemies.Count; i++)
             {
-                _enemies[i].Update(gameTime);
-                if (!_enemies[i].Active)
+                enemies[i].Update(gameTime);
+                if (!enemies[i].Active)
                 {
-                    _enemies.Remove(_enemies[i]);
+                    enemies.Remove(enemies[i]);
                 }
             }
         }
 
-        private void CreateBullet()
+        private void CreateBullet(GameTime gameTime)
         {
-            var bullet = new PlayerBullet();
-            bullet.Initialize(_playerBullet, new Vector2(_player.Position.X + 45, _player.Position.Y - 10));
-            _bullets.Add(bullet);
+            if (gameTime.TotalGameTime - previousBulletSpawnTime > bulletSpawnTime)
+            {
+                previousBulletSpawnTime = gameTime.TotalGameTime;
+                var bullet = new PlayerBullet();
+                bullet.Initialize(playerBullet, new Vector2(player.Position.X + 45, player.Position.Y - 10));
+                bullets.Add(bullet);
+            }
         }
 
         private void InitEnemies()
@@ -183,9 +195,9 @@ namespace SpaceInvaders
             {
                 for (var j = 50; j < 400; j += 50)
                 {
-                    var enemy = new Enemy();
-                    enemy.Initialize(_enemy, new Vector2(i, j));
-                    _enemies.Add(enemy);
+                    var en = new Enemy();
+                    en.Initialize(this.enemy, new Vector2(i, j));
+                    enemies.Add(en);
                 }
             }
         }
