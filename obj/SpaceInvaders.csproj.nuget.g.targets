@@ -4,10 +4,10 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)netstandard.library\2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('$(NuGetPackageRoot)netstandard.library\2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
-    <Import Project="$(NuGetPackageRoot)monogame.framework.desktopgl.core\3.8.0.2\build\MonoGame.Framework.DesktopGL.Core.targets" Condition="Exists('$(NuGetPackageRoot)monogame.framework.desktopgl.core\3.8.0.2\build\MonoGame.Framework.DesktopGL.Core.targets')" />
-    <Import Project="$(NuGetPackageRoot)monogame.content.builder\3.7.0.9\build\MonoGame.Content.Builder.targets" Condition="Exists('$(NuGetPackageRoot)monogame.content.builder\3.7.0.9\build\MonoGame.Content.Builder.targets')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage\16.4.0\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage\16.4.0\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\16.4.0\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\16.4.0\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.targets')" />
+    <Import Project="$(NuGetPackageRoot)netstandard.library/2.0.0/build/netstandard2.0/NETStandard.Library.targets" Condition="Exists('$(NuGetPackageRoot)netstandard.library/2.0.0/build/netstandard2.0/NETStandard.Library.targets')" />
+    <Import Project="$(NuGetPackageRoot)monogame.framework.desktopgl.core/3.8.0.2/build/MonoGame.Framework.DesktopGL.Core.targets" Condition="Exists('$(NuGetPackageRoot)monogame.framework.desktopgl.core/3.8.0.2/build/MonoGame.Framework.DesktopGL.Core.targets')" />
+    <Import Project="$(NuGetPackageRoot)monogame.content.builder/3.7.0.9/build/MonoGame.Content.Builder.targets" Condition="Exists('$(NuGetPackageRoot)monogame.content.builder/3.7.0.9/build/MonoGame.Content.Builder.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage/16.4.0/build/netstandard1.0/Microsoft.CodeCoverage.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage/16.4.0/build/netstandard1.0/Microsoft.CodeCoverage.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk/16.4.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk/16.4.0/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.targets')" />
   </ImportGroup>
 </Project>

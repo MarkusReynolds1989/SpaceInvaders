@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace SpaceInvaders
 {
@@ -22,7 +24,7 @@ namespace SpaceInvaders
         private int score = 0;
         private const int ScreenWidth = 600;
         private const int ScreenHeight = 800;
-
+        
         public Game1()
         {
             var graphics = new GraphicsDeviceManager(this)
@@ -39,9 +41,7 @@ namespace SpaceInvaders
             bullets = new List<PlayerBullet>();
             enemies = new List<Enemy>();
             bulletSpawnTime = TimeSpan.FromSeconds((0.5f));
-            //TODO:ScreenHeight - (should be _player.Height but doesn't work).
-            player = new Player {Position = new Vector2(0, ScreenHeight - 96)};
-            //InitEnemies should go here but it doesn't work properly right now. 
+            player = new Player {Position = new Vector2(0, ScreenHeight - 55)};  
             base.Initialize();
         }
 
@@ -49,11 +49,11 @@ namespace SpaceInvaders
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ship = Content.Load<Texture2D>("Ship");
+            player.Texture = ship;
             playerBullet = Content.Load<Texture2D>("PlayerBullet");
             enemy = Content.Load<Texture2D>("Enemy");
             font = Content.Load<SpriteFont>("Score");
             //InitEnemies has to go here because of texture loading. 
-            //TODO: Find a way to move this to init.
             InitEnemies();
         }
 
@@ -100,16 +100,15 @@ namespace SpaceInvaders
                 || Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
             
             if (state.IsKeyDown(Keys.Right)
-                //TODO: Find out why the return width methods won't work. Texture must be added to player at the wrong time.
-                && player.Position.X <= ScreenWidth + 96) 
+                && player.Position.X <= ScreenWidth - player.Width) 
             {
-                player.Position.X += 2;
+                player.Position.X += player.Speed;
             }
 
             if (state.IsKeyDown(Keys.Left)
-                && player.Position.X >= 0)
+                && player.Position.X >= 0) 
             {
-                player.Position.X -= 2;
+                player.Position.X -= player.Speed;
             }
 
             if (state.IsKeyDown(Keys.Space))
@@ -157,26 +156,20 @@ namespace SpaceInvaders
         {
             foreach (var en in enemies)
             {
-                if (en.Position.X >= ScreenWidth )
+                if (en.Position.X >= ScreenWidth)
                 {
-                    en.Speed = -5;
-                    en.Position.Y += 10;
+                    en.Position.X -= en.Speed;
                 }
-
-                if (en.Position.X <= -40)
+                if (en.Position.X <= 0)
                 {
-                    en.Speed =  5;
-                    en.Position.Y += 10;
+                    en.Position.X += en.Speed;
                 }
-
                 if ((int)en.Position.Y == ScreenHeight)
                 {
                     gameOver = true;
                 }
-                
-                en.Position.X += en.Speed;
             }
-            
+                        
             for (var i = 0; i < enemies.Count; i++)
             {
                 enemies[i].Update(gameTime);
@@ -193,14 +186,16 @@ namespace SpaceInvaders
             {
                 previousBulletSpawnTime = gameTime.TotalGameTime;
                 var bullet = new PlayerBullet();
-                bullet.Initialize(playerBullet, new Vector2(player.Position.X + 45, player.Position.Y - 10));
+                bullet.Initialize(playerBullet, new Vector2(
+                    player.Position.X + player.Width / 2
+                    , player.Position.Y - player.Height/4));
                 bullets.Add(bullet);
             }
         }
 
         private void InitEnemies()
         {
-            for (var i = 50; i < 450; i += 50)
+            for (var i = 50; i < ScreenWidth; i += 50)
             {
                 for (var j = 50; j < 400; j += 50)
                 {
