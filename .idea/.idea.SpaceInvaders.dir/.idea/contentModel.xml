@@ -18,12 +18,15 @@
           <e p="DesktopGL" t="Include">
             <e p="Content" t="Include">
               <e p="Enemy.xnb" t="Include" />
+              <e p="Explosion.xnb" t="Include" />
               <e p="Laser.xnb" t="Include" />
               <e p="PlayerBullet.xnb" t="Include" />
               <e p="Score.xnb" t="Include" />
               <e p="Ship.xnb" t="Include" />
             </e>
             <e p="Enemy.xnb" t="Include" />
+            <e p="Explosion.ogg" t="Include" />
+            <e p="Explosion.xnb" t="Include" />
             <e p="Laser.xnb" t="Include" />
             <e p="PlayerBullet.xnb" t="Include" />
             <e p="Score.xnb" t="Include" />
@@ -32,6 +35,7 @@
         </e>
         <e p="Content.mgcb" t="Include" />
         <e p="Enemy.png" t="Include" />
+        <e p="Explosion.wav" t="Include" />
         <e p="Laser.png" t="Include" />
         <e p="obj" t="Include">
           <e p="DesktopGL" t="Include">
@@ -40,12 +44,14 @@
             <e p="Content" t="Include">
               <e p=".mgcontent" t="Include" />
               <e p="Enemy.mgcontent" t="Include" />
+              <e p="Explosion.mgcontent" t="Include" />
               <e p="Laser.mgcontent" t="Include" />
               <e p="PlayerBullet.mgcontent" t="Include" />
               <e p="Score.mgcontent" t="Include" />
               <e p="Ship.mgcontent" t="Include" />
             </e>
             <e p="Enemy.mgcontent" t="Include" />
+            <e p="Explosion.mgcontent" t="Include" />
             <e p="Laser.mgcontent" t="Include" />
             <e p="PlayerBullet.mgcontent" t="Include" />
             <e p="Score.mgcontent" t="Include" />
@@ -60,6 +66,381 @@
         <e p="Ship.png" t="Include" />
       </e>
       <e p="Enemy.cs" t="Include" />
+      <e p="Finished" t="Include">
+        <e p="api-ms-win-core-console-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-datetime-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-debug-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-errorhandling-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-file-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-file-l1-2-0.dll" t="Include" />
+        <e p="api-ms-win-core-file-l2-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-handle-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-heap-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-interlocked-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-libraryloader-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-localization-l1-2-0.dll" t="Include" />
+        <e p="api-ms-win-core-memory-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-namedpipe-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-processenvironment-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-processthreads-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-processthreads-l1-1-1.dll" t="Include" />
+        <e p="api-ms-win-core-profile-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-rtlsupport-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-string-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-synch-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-synch-l1-2-0.dll" t="Include" />
+        <e p="api-ms-win-core-sysinfo-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-timezone-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-core-util-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-conio-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-convert-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-environment-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-filesystem-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-heap-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-locale-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-math-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-multibyte-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-private-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-process-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-runtime-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-stdio-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-string-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-time-l1-1-0.dll" t="Include" />
+        <e p="api-ms-win-crt-utility-l1-1-0.dll" t="Include" />
+        <e p="clrcompression.dll" t="Include" />
+        <e p="clretwrc.dll" t="Include" />
+        <e p="clrjit.dll" t="Include" />
+        <e p="CodeCoverage" t="Include">
+          <e p="amd64" t="Include">
+            <e p="covrun64.dll" t="Include" />
+            <e p="msdia140.dll" t="Include" />
+          </e>
+          <e p="CodeCoverage.config" t="Include" />
+          <e p="CodeCoverage.exe" t="Include" />
+          <e p="codecoveragemessages.dll" t="Include" />
+          <e p="covrun32.dll" t="Include" />
+          <e p="msdia140.dll" t="Include" />
+        </e>
+        <e p="Content" t="Include">
+          <e p="Enemy.xnb" t="Include" />
+          <e p="Explosion.xnb" t="Include" />
+          <e p="Laser.xnb" t="Include" />
+          <e p="PlayerBullet.xnb" t="Include" />
+          <e p="Score.xnb" t="Include" />
+          <e p="Ship.xnb" t="Include" />
+        </e>
+        <e p="coreclr.dll" t="Include" />
+        <e p="cs" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="dbgshim.dll" t="Include" />
+        <e p="de" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="es" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="fr" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="hostfxr.dll" t="Include" />
+        <e p="hostpolicy.dll" t="Include" />
+        <e p="it" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="ja" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="ko" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="Microsoft.CodeCoverage.props" t="Include" />
+        <e p="Microsoft.CodeCoverage.targets" t="Include" />
+        <e p="Microsoft.CSharp.dll" t="Include" />
+        <e p="Microsoft.DiaSymReader.Native.amd64.dll" t="Include" />
+        <e p="Microsoft.DotNet.InternalAbstractions.dll" t="Include" />
+        <e p="Microsoft.TestPlatform.CommunicationUtilities.dll" t="Include" />
+        <e p="Microsoft.TestPlatform.CoreUtilities.dll" t="Include" />
+        <e p="Microsoft.TestPlatform.CrossPlatEngine.dll" t="Include" />
+        <e p="Microsoft.TestPlatform.PlatformAbstractions.dll" t="Include" />
+        <e p="Microsoft.TestPlatform.Utilities.dll" t="Include" />
+        <e p="Microsoft.VisualBasic.Core.dll" t="Include" />
+        <e p="Microsoft.VisualBasic.dll" t="Include" />
+        <e p="Microsoft.VisualStudio.CodeCoverage.Shim.dll" t="Include" />
+        <e p="Microsoft.VisualStudio.TestPlatform.Common.dll" t="Include" />
+        <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.dll" t="Include" />
+        <e p="Microsoft.VisualStudio.TraceDataCollector.dll" t="Include" />
+        <e p="Microsoft.Win32.Primitives.dll" t="Include" />
+        <e p="Microsoft.Win32.Registry.dll" t="Include" />
+        <e p="MonoGame.Framework.dll" t="Include" />
+        <e p="mscordaccore.dll" t="Include" />
+        <e p="mscordaccore_amd64_amd64_4.700.19.57202.dll" t="Include" />
+        <e p="mscordbi.dll" t="Include" />
+        <e p="mscorlib.dll" t="Include" />
+        <e p="mscorrc.debug.dll" t="Include" />
+        <e p="mscorrc.dll" t="Include" />
+        <e p="netstandard.dll" t="Include" />
+        <e p="Newtonsoft.Json.dll" t="Include" />
+        <e p="NuGet.Frameworks.dll" t="Include" />
+        <e p="nunit.engine.api.dll" t="Include" />
+        <e p="nunit.engine.dll" t="Include" />
+        <e p="nunit.framework.dll" t="Include" />
+        <e p="NUnit3.TestAdapter.dll" t="Include" />
+        <e p="NUnit3.TestAdapter.pdb" t="Include" />
+        <e p="pl" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="pt-BR" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="ru" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="SDL2.dll" t="Include" />
+        <e p="soft_oal.dll" t="Include" />
+        <e p="SOS_README.md" t="Include" />
+        <e p="SpaceInvaders.deps.json" t="Include" />
+        <e p="SpaceInvaders.dll" t="Include" />
+        <e p="SpaceInvaders.exe" t="Include" />
+        <e p="SpaceInvaders.pdb" t="Include" />
+        <e p="SpaceInvaders.runtimeconfig.json" t="Include" />
+        <e p="System.AppContext.dll" t="Include" />
+        <e p="System.Buffers.dll" t="Include" />
+        <e p="System.Collections.Concurrent.dll" t="Include" />
+        <e p="System.Collections.dll" t="Include" />
+        <e p="System.Collections.Immutable.dll" t="Include" />
+        <e p="System.Collections.NonGeneric.dll" t="Include" />
+        <e p="System.Collections.Specialized.dll" t="Include" />
+        <e p="System.ComponentModel.Annotations.dll" t="Include" />
+        <e p="System.ComponentModel.DataAnnotations.dll" t="Include" />
+        <e p="System.ComponentModel.dll" t="Include" />
+        <e p="System.ComponentModel.EventBasedAsync.dll" t="Include" />
+        <e p="System.ComponentModel.Primitives.dll" t="Include" />
+        <e p="System.ComponentModel.TypeConverter.dll" t="Include" />
+        <e p="System.Configuration.dll" t="Include" />
+        <e p="System.Console.dll" t="Include" />
+        <e p="System.Core.dll" t="Include" />
+        <e p="System.Data.Common.dll" t="Include" />
+        <e p="System.Data.DataSetExtensions.dll" t="Include" />
+        <e p="System.Data.dll" t="Include" />
+        <e p="System.Diagnostics.Contracts.dll" t="Include" />
+        <e p="System.Diagnostics.Debug.dll" t="Include" />
+        <e p="System.Diagnostics.DiagnosticSource.dll" t="Include" />
+        <e p="System.Diagnostics.FileVersionInfo.dll" t="Include" />
+        <e p="System.Diagnostics.Process.dll" t="Include" />
+        <e p="System.Diagnostics.StackTrace.dll" t="Include" />
+        <e p="System.Diagnostics.TextWriterTraceListener.dll" t="Include" />
+        <e p="System.Diagnostics.Tools.dll" t="Include" />
+        <e p="System.Diagnostics.TraceSource.dll" t="Include" />
+        <e p="System.Diagnostics.Tracing.dll" t="Include" />
+        <e p="System.dll" t="Include" />
+        <e p="System.Drawing.dll" t="Include" />
+        <e p="System.Drawing.Primitives.dll" t="Include" />
+        <e p="System.Dynamic.Runtime.dll" t="Include" />
+        <e p="System.Globalization.Calendars.dll" t="Include" />
+        <e p="System.Globalization.dll" t="Include" />
+        <e p="System.Globalization.Extensions.dll" t="Include" />
+        <e p="System.IO.Compression.Brotli.dll" t="Include" />
+        <e p="System.IO.Compression.dll" t="Include" />
+        <e p="System.IO.Compression.FileSystem.dll" t="Include" />
+        <e p="System.IO.Compression.ZipFile.dll" t="Include" />
+        <e p="System.IO.dll" t="Include" />
+        <e p="System.IO.FileSystem.AccessControl.dll" t="Include" />
+        <e p="System.IO.FileSystem.dll" t="Include" />
+        <e p="System.IO.FileSystem.DriveInfo.dll" t="Include" />
+        <e p="System.IO.FileSystem.Primitives.dll" t="Include" />
+        <e p="System.IO.FileSystem.Watcher.dll" t="Include" />
+        <e p="System.IO.IsolatedStorage.dll" t="Include" />
+        <e p="System.IO.MemoryMappedFiles.dll" t="Include" />
+        <e p="System.IO.Pipes.AccessControl.dll" t="Include" />
+        <e p="System.IO.Pipes.dll" t="Include" />
+        <e p="System.IO.UnmanagedMemoryStream.dll" t="Include" />
+        <e p="System.Linq.dll" t="Include" />
+        <e p="System.Linq.Expressions.dll" t="Include" />
+        <e p="System.Linq.Parallel.dll" t="Include" />
+        <e p="System.Linq.Queryable.dll" t="Include" />
+        <e p="System.Memory.dll" t="Include" />
+        <e p="System.Net.dll" t="Include" />
+        <e p="System.Net.Http.dll" t="Include" />
+        <e p="System.Net.HttpListener.dll" t="Include" />
+        <e p="System.Net.Mail.dll" t="Include" />
+        <e p="System.Net.NameResolution.dll" t="Include" />
+        <e p="System.Net.NetworkInformation.dll" t="Include" />
+        <e p="System.Net.Ping.dll" t="Include" />
+        <e p="System.Net.Primitives.dll" t="Include" />
+        <e p="System.Net.Requests.dll" t="Include" />
+        <e p="System.Net.Security.dll" t="Include" />
+        <e p="System.Net.ServicePoint.dll" t="Include" />
+        <e p="System.Net.Sockets.dll" t="Include" />
+        <e p="System.Net.WebClient.dll" t="Include" />
+        <e p="System.Net.WebHeaderCollection.dll" t="Include" />
+        <e p="System.Net.WebProxy.dll" t="Include" />
+        <e p="System.Net.WebSockets.Client.dll" t="Include" />
+        <e p="System.Net.WebSockets.dll" t="Include" />
+        <e p="System.Numerics.dll" t="Include" />
+        <e p="System.Numerics.Vectors.dll" t="Include" />
+        <e p="System.ObjectModel.dll" t="Include" />
+        <e p="System.Private.CoreLib.dll" t="Include" />
+        <e p="System.Private.DataContractSerialization.dll" t="Include" />
+        <e p="System.Private.Uri.dll" t="Include" />
+        <e p="System.Private.Xml.dll" t="Include" />
+        <e p="System.Private.Xml.Linq.dll" t="Include" />
+        <e p="System.Reflection.DispatchProxy.dll" t="Include" />
+        <e p="System.Reflection.dll" t="Include" />
+        <e p="System.Reflection.Emit.dll" t="Include" />
+        <e p="System.Reflection.Emit.ILGeneration.dll" t="Include" />
+        <e p="System.Reflection.Emit.Lightweight.dll" t="Include" />
+        <e p="System.Reflection.Extensions.dll" t="Include" />
+        <e p="System.Reflection.Metadata.dll" t="Include" />
+        <e p="System.Reflection.Primitives.dll" t="Include" />
+        <e p="System.Reflection.TypeExtensions.dll" t="Include" />
+        <e p="System.Resources.Reader.dll" t="Include" />
+        <e p="System.Resources.ResourceManager.dll" t="Include" />
+        <e p="System.Resources.Writer.dll" t="Include" />
+        <e p="System.Runtime.CompilerServices.Unsafe.dll" t="Include" />
+        <e p="System.Runtime.CompilerServices.VisualC.dll" t="Include" />
+        <e p="System.Runtime.dll" t="Include" />
+        <e p="System.Runtime.Extensions.dll" t="Include" />
+        <e p="System.Runtime.Handles.dll" t="Include" />
+        <e p="System.Runtime.InteropServices.dll" t="Include" />
+        <e p="System.Runtime.InteropServices.RuntimeInformation.dll" t="Include" />
+        <e p="System.Runtime.InteropServices.WindowsRuntime.dll" t="Include" />
+        <e p="System.Runtime.Intrinsics.dll" t="Include" />
+        <e p="System.Runtime.Loader.dll" t="Include" />
+        <e p="System.Runtime.Numerics.dll" t="Include" />
+        <e p="System.Runtime.Serialization.dll" t="Include" />
+        <e p="System.Runtime.Serialization.Formatters.dll" t="Include" />
+        <e p="System.Runtime.Serialization.Json.dll" t="Include" />
+        <e p="System.Runtime.Serialization.Primitives.dll" t="Include" />
+        <e p="System.Runtime.Serialization.Xml.dll" t="Include" />
+        <e p="System.Runtime.WindowsRuntime.dll" t="Include" />
+        <e p="System.Runtime.WindowsRuntime.UI.Xaml.dll" t="Include" />
+        <e p="System.Security.AccessControl.dll" t="Include" />
+        <e p="System.Security.Claims.dll" t="Include" />
+        <e p="System.Security.Cryptography.Algorithms.dll" t="Include" />
+        <e p="System.Security.Cryptography.Cng.dll" t="Include" />
+        <e p="System.Security.Cryptography.Csp.dll" t="Include" />
+        <e p="System.Security.Cryptography.Encoding.dll" t="Include" />
+        <e p="System.Security.Cryptography.OpenSsl.dll" t="Include" />
+        <e p="System.Security.Cryptography.Primitives.dll" t="Include" />
+        <e p="System.Security.Cryptography.X509Certificates.dll" t="Include" />
+        <e p="System.Security.dll" t="Include" />
+        <e p="System.Security.Principal.dll" t="Include" />
+        <e p="System.Security.Principal.Windows.dll" t="Include" />
+        <e p="System.Security.SecureString.dll" t="Include" />
+        <e p="System.ServiceModel.Web.dll" t="Include" />
+        <e p="System.ServiceProcess.dll" t="Include" />
+        <e p="System.Text.Encoding.CodePages.dll" t="Include" />
+        <e p="System.Text.Encoding.dll" t="Include" />
+        <e p="System.Text.Encoding.Extensions.dll" t="Include" />
+        <e p="System.Text.Encodings.Web.dll" t="Include" />
+        <e p="System.Text.Json.dll" t="Include" />
+        <e p="System.Text.RegularExpressions.dll" t="Include" />
+        <e p="System.Threading.Channels.dll" t="Include" />
+        <e p="System.Threading.dll" t="Include" />
+        <e p="System.Threading.Overlapped.dll" t="Include" />
+        <e p="System.Threading.Tasks.Dataflow.dll" t="Include" />
+        <e p="System.Threading.Tasks.dll" t="Include" />
+        <e p="System.Threading.Tasks.Extensions.dll" t="Include" />
+        <e p="System.Threading.Tasks.Parallel.dll" t="Include" />
+        <e p="System.Threading.Thread.dll" t="Include" />
+        <e p="System.Threading.ThreadPool.dll" t="Include" />
+        <e p="System.Threading.Timer.dll" t="Include" />
+        <e p="System.Transactions.dll" t="Include" />
+        <e p="System.Transactions.Local.dll" t="Include" />
+        <e p="System.ValueTuple.dll" t="Include" />
+        <e p="System.Web.dll" t="Include" />
+        <e p="System.Web.HttpUtility.dll" t="Include" />
+        <e p="System.Windows.dll" t="Include" />
+        <e p="System.Xml.dll" t="Include" />
+        <e p="System.Xml.Linq.dll" t="Include" />
+        <e p="System.Xml.ReaderWriter.dll" t="Include" />
+        <e p="System.Xml.Serialization.dll" t="Include" />
+        <e p="System.Xml.XDocument.dll" t="Include" />
+        <e p="System.Xml.XmlDocument.dll" t="Include" />
+        <e p="System.Xml.XmlSerializer.dll" t="Include" />
+        <e p="System.Xml.XPath.dll" t="Include" />
+        <e p="System.Xml.XPath.XDocument.dll" t="Include" />
+        <e p="System.Xml.XPath.XmlDocument.dll" t="Include" />
+        <e p="testhost.dll" t="Include" />
+        <e p="testhost.exe" t="Include" />
+        <e p="tr" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="ucrtbase.dll" t="Include" />
+        <e p="WindowsBase.dll" t="Include" />
+        <e p="zh-Hans" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+        <e p="zh-Hant" t="Include">
+          <e p="Microsoft.TestPlatform.CommunicationUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CoreUtilities.resources.dll" t="Include" />
+          <e p="Microsoft.TestPlatform.CrossPlatEngine.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.Common.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TraceDataCollector.resources.dll" t="Include" />
+        </e>
+      </e>
       <e p="Game1.cs" t="Include" />
       <e p="Icon.bmp" t="Include" />
       <e p="Icon.ico" t="Include" />

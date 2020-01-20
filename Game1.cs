@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework.Audio;
 
 namespace SpaceInvaders
 {
@@ -14,6 +15,7 @@ namespace SpaceInvaders
         private Texture2D playerBullet;
         private Texture2D enemy;
         private Texture2D enemyLaserTexture;
+        private SoundEffect explosion;
         private SpriteFont font;
         private Player player;
         private List<PlayerBullet> bullets;
@@ -24,6 +26,7 @@ namespace SpaceInvaders
         private TimeSpan laserSpawnTime;
         private TimeSpan previousLaserSpawnTime;
         private bool gameOver = false;
+        private bool win = false;
         private int score = 0;
         private const int ScreenWidth = 600;
         private const int ScreenHeight = 800;
@@ -56,6 +59,7 @@ namespace SpaceInvaders
             spriteBatch = new SpriteBatch(GraphicsDevice);
             ship = Content.Load<Texture2D>("Ship");
             player.Texture = ship;
+            explosion = Content.Load<SoundEffect>("explosion");
             playerBullet = Content.Load<Texture2D>("PlayerBullet");
             enemy = Content.Load<Texture2D>("Enemy");
             enemyLaserTexture = Content.Load <Texture2D>("Laser"); 
@@ -77,6 +81,25 @@ namespace SpaceInvaders
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
+            if (gameOver == true)
+                        {
+                            GraphicsDevice.Clear(Color.Black);
+                            spriteBatch.DrawString(font
+                            , "GAME OVER"
+                            , new Vector2(ScreenWidth / 2
+                                , ScreenHeight / 2)
+                            , Color.White); 
+                        }
+            
+                        if (win == true)
+                        {
+                            GraphicsDevice.Clear(Color.Black);
+                            spriteBatch.DrawString(font
+                            , "YOU ARE WINNER"
+                            , new Vector2(ScreenWidth / 2
+                                , ScreenHeight/ 2)
+                            , Color.White);
+                        }
             foreach (var b in bullets)
             {
                 b.Draw(spriteBatch);
@@ -142,6 +165,7 @@ namespace SpaceInvaders
                             , en.Texture.Height)) continue;
                         en.Active = false;
                         bl.Active = false;
+                        explosion.Play();
                         score++;
                         enemySpeedModifier += 0.25;
                     }
@@ -158,6 +182,7 @@ namespace SpaceInvaders
                     , player.Position.Y
                     , player.Width
                     , player.Height)) continue;
+                explosion.Play();
                 l.Active = false;
                 player.Lives--;
             }
@@ -165,7 +190,10 @@ namespace SpaceInvaders
             UpdateBullets(gameTime);            
             UpdateEnemies(gameTime);
             UpdateLasers(gameTime);
-            
+            if (enemies.Count <= 0)
+            {
+                win = true;
+            }
             if (player.Lives < 0)
             {
                 gameOver = true;
@@ -215,13 +243,17 @@ namespace SpaceInvaders
                         item.Position.Y += (float)enemySpeedModifier;
                     }
                 }
-                if ((int)en.Position.Y + en.Texture.Height == ScreenHeight)
+                //Game over if they reach the bottom.
+                foreach (var item in enemies)
                 {
-                    gameOver = true;
+                    if ((int) en.Position.Y + en.Height >= ScreenHeight)
+                    {
+                        gameOver = true;
+                    }
                 }
+
                 en.Position.X += (float)en.Speed;
                 // Create a laser at the bottom of the enemy and the middle.
-                // Find the bottom Y of the enemies.    
                 var minX = enemies.Min(x => x.Position.X);
                 var maxX = enemies.Max(x => x.Position.X);
                 var maxY = enemies.Max(x => x.Position.Y);
