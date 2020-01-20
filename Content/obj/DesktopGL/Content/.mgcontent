@@ -4,12 +4,14 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>/home/mars/Documents/Code/C#/SpaceInvaders/Content/Enemy.png</File>
-    <File>/home/mars/Documents/Code/C#/SpaceInvaders/Content/PlayerBullet.png</File>
-    <File>/home/mars/Documents/Code/C#/SpaceInvaders/Content/Score.spritefont</File>
-    <File>/home/mars/Documents/Code/C#/SpaceInvaders/Content/Ship.png</File>
+    <File>C:/Users/marsa/Documents/Code/C#/SpaceInvaders/Content/Enemy.png</File>
+    <File>C:/Users/marsa/Documents/Code/C#/SpaceInvaders/Content/Laser.png</File>
+    <File>C:/Users/marsa/Documents/Code/C#/SpaceInvaders/Content/PlayerBullet.png</File>
+    <File>C:/Users/marsa/Documents/Code/C#/SpaceInvaders/Content/Score.spritefont</File>
+    <File>C:/Users/marsa/Documents/Code/C#/SpaceInvaders/Content/Ship.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

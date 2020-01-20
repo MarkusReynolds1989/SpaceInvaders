@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.InteropServices.ComTypes;
+using System.Linq;
 
 namespace SpaceInvaders
 {
@@ -14,16 +13,19 @@ namespace SpaceInvaders
         private Texture2D ship;
         private Texture2D playerBullet;
         private Texture2D enemy;
+        private Texture2D enemyLaserTexture;
         private SpriteFont font;
         private Player player;
         private List<PlayerBullet> bullets;
         private List<Enemy> enemies;
+        private List<Laser> lasers;
         private TimeSpan bulletSpawnTime;
         private TimeSpan previousBulletSpawnTime;
         private bool gameOver = false;
         private int score = 0;
         private const int ScreenWidth = 600;
         private const int ScreenHeight = 800;
+        private double enemySpeedModifier = 1;
         
         public Game1()
         {
@@ -52,6 +54,7 @@ namespace SpaceInvaders
             player.Texture = ship;
             playerBullet = Content.Load<Texture2D>("PlayerBullet");
             enemy = Content.Load<Texture2D>("Enemy");
+            enemyLaserTexture = Content.Load <Texture2D>("Laser"); 
             font = Content.Load<SpriteFont>("Score");
             //InitEnemies has to go here because of texture loading. 
             InitEnemies();
@@ -80,19 +83,28 @@ namespace SpaceInvaders
             {
                 e.Draw(spriteBatch);
             }
+
+            foreach (var l in lasers)
+            {
+                l.Draw(spriteBatch);
+            }
+            
             //Draw the player's Ship.
             spriteBatch.Draw(ship, player.Position, Color.White);
             //Draw Score.
             spriteBatch.DrawString(font
                 ,$"Score: {score.ToString()}"
                 ,new Vector2(ScreenWidth - 200, 10)
-                ,Color.White );     
+                ,Color.White );
+            spriteBatch.DrawString(font
+                , $"Lives : {player.Lives.ToString()}"
+                , new Vector2(0, 10)
+                , Color.White);
             spriteBatch.End();
             
             base.Draw(gameTime);
         }
         
-        //TODO: Event handler class.
         private void EventHandler(GameTime gameTime)
         {
             var state = Keyboard.GetState();
@@ -132,14 +144,31 @@ namespace SpaceInvaders
                         en.Active = false;
                         bl.Active = false;
                         score++;
+                        enemySpeedModifier += 0.25;
                     }
                 }
             }
             UpdateBullets(gameTime);            
             UpdateEnemies(gameTime);
+            UpdateLasers(gameTime);
+            if (player.Lives < 0)
+            {
+                gameOver = true;
+            }
         }
 
-        
+        private void UpdateLasers(GameTime gameTime)
+        {
+            for (var i = 0; i < lasers.Count; i++)
+            {
+                lasers[i].Update(gameTime);
+                if (!lasers[i].Active || Math.Abs(lasers[i].Position.Y) < 0)
+                {
+                    lasers.Remove(lasers[i]);
+                }
+            }
+        }
+
         private void UpdateBullets(GameTime gameTime)
         {
             for (var i = 0; i < bullets.Count; i++)
@@ -151,23 +180,33 @@ namespace SpaceInvaders
                 }
             }
         }
-        //TODO: Make the enemies move like space invaders.
         private void UpdateEnemies(GameTime gameTime)
         {
             foreach (var en in enemies)
             {
-                if (en.Position.X >= ScreenWidth)
+                if (en.Position.X + en.Texture.Width >= ScreenWidth)
                 {
-                    en.Position.X -= en.Speed;
+                    foreach (var item in enemies)
+                    {
+                        item.Speed = -enemySpeedModifier;
+                        item.Position.Y += (float)enemySpeedModifier;
+                    }
                 }
                 if (en.Position.X <= 0)
                 {
-                    en.Position.X += en.Speed;
+                    foreach (var item in enemies)
+                    {
+                        item.Speed = enemySpeedModifier;
+                        item.Position.Y += (float)enemySpeedModifier;
+                    }
                 }
-                if ((int)en.Position.Y == ScreenHeight)
+                if ((int)en.Position.Y + en.Texture.Height == ScreenHeight)
                 {
                     gameOver = true;
                 }
+
+                en.Position.X += (float)en.Speed;
+                
             }
                         
             for (var i = 0; i < enemies.Count; i++)
@@ -193,14 +232,24 @@ namespace SpaceInvaders
             }
         }
 
+        private void CreateLasers(GameTime gameTime)
+        {
+            if (gameTime.TotalGameTime - previousBulletSpawnTime > bulletSpawnTime)
+            {
+                previousBulletSpawnTime = gameTime.TotalGameTime;
+                var laser = new Laser();
+                laser.Initialize(enemyLaserTexture
+                    ,new Vector2(ScreenWidth/2, ScreenHeight/2));
+            }
+        }
         private void InitEnemies()
         {
-            for (var i = 50; i < ScreenWidth; i += 50)
+            for (var i = 50; i < ScreenWidth / 1.5; i += 50)
             {
-                for (var j = 50; j < 400; j += 50)
+                for (var j = 50; j < ScreenHeight/2; j += 50)
                 {
                     var en = new Enemy();
-                    en.Initialize(this.enemy, new Vector2(i, j));
+                    en.Initialize(enemy, new Vector2(i, j));
                     enemies.Add(en);
                 }
             }

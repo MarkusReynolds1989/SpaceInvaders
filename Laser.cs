@@ -4,15 +4,16 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using NUnit.Framework.Constraints;
 
 namespace SpaceInvaders
 {
-    public class Player
+    public class Laser
     {
         public Texture2D Texture;
         public Vector2 Position;
-        public float Speed = 5;
-        public int Lives = 3;
+        public bool Active = true;
+        public float Speed = 1;
 
         public int Width => Texture.Width;
 

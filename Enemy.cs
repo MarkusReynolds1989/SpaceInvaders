@@ -11,7 +11,7 @@ namespace SpaceInvaders
         {
             public Texture2D Texture;
             public Vector2 Position;
-            public float Speed = 1;
+            public double Speed = 1;
             public bool Active;
 
             public int Width => Texture.Width;
