@@ -21,6 +21,8 @@ namespace SpaceInvaders
         private List<Laser> lasers;
         private TimeSpan bulletSpawnTime;
         private TimeSpan previousBulletSpawnTime;
+        private TimeSpan laserSpawnTime;
+        private TimeSpan previousLaserSpawnTime;
         private bool gameOver = false;
         private int score = 0;
         private const int ScreenWidth = 600;
@@ -42,7 +44,9 @@ namespace SpaceInvaders
         {
             bullets = new List<PlayerBullet>();
             enemies = new List<Enemy>();
+            lasers = new List<Laser>();
             bulletSpawnTime = TimeSpan.FromSeconds((0.5f));
+            laserSpawnTime = TimeSpan.FromSeconds((0.5f));
             player = new Player {Position = new Vector2(0, ScreenHeight - 55)};  
             base.Initialize();
         }
@@ -73,22 +77,18 @@ namespace SpaceInvaders
         {
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
-            //Draw all the bullets.
             foreach (var b in bullets)
             {
                 b.Draw(spriteBatch);
             }
-            //Draw all the enemies.
             foreach (var e in enemies)
             {
                 e.Draw(spriteBatch);
             }
-
             foreach (var l in lasers)
             {
                 l.Draw(spriteBatch);
             }
-            
             //Draw the player's Ship.
             spriteBatch.Draw(ship, player.Position, Color.White);
             //Draw Score.
@@ -101,7 +101,6 @@ namespace SpaceInvaders
                 , new Vector2(0, 10)
                 , Color.White);
             spriteBatch.End();
-            
             base.Draw(gameTime);
         }
         
@@ -127,7 +126,7 @@ namespace SpaceInvaders
             {
                 CreateBullet(gameTime);
             }
-
+            //Bullet/ enemy collision.
             foreach (var bl in bullets)
             {
                 foreach (var en in enemies)
@@ -148,9 +147,25 @@ namespace SpaceInvaders
                     }
                 }
             }
+            //Check laser collision.
+            foreach (var l in lasers)
+            {
+                if (!Collision.RectangleCollision(l.Position.X
+                    , l.Position.Y
+                    , l.Width
+                    , l.Height
+                    , player.Position.X
+                    , player.Position.Y
+                    , player.Width
+                    , player.Height)) continue;
+                l.Active = false;
+                player.Lives--;
+            }
+            
             UpdateBullets(gameTime);            
             UpdateEnemies(gameTime);
             UpdateLasers(gameTime);
+            
             if (player.Lives < 0)
             {
                 gameOver = true;
@@ -162,7 +177,7 @@ namespace SpaceInvaders
             for (var i = 0; i < lasers.Count; i++)
             {
                 lasers[i].Update(gameTime);
-                if (!lasers[i].Active || Math.Abs(lasers[i].Position.Y) < 0)
+                if (!lasers[i].Active || Math.Abs(lasers[i].Position.Y) > ScreenHeight)
                 {
                     lasers.Remove(lasers[i]);
                 }
@@ -204,9 +219,16 @@ namespace SpaceInvaders
                 {
                     gameOver = true;
                 }
-
                 en.Position.X += (float)en.Speed;
-                
+                // Create a laser at the bottom of the enemy and the middle.
+                // Find the bottom Y of the enemies.    
+                var minX = enemies.Min(x => x.Position.X);
+                var maxX = enemies.Max(x => x.Position.X);
+                var maxY = enemies.Max(x => x.Position.Y);
+                var random = new Random();
+                CreateLaser(gameTime
+                    , new Vector2(random.Next((int)minX,(int)maxX) + (en.Width / 2)
+                    , maxY + en.Height)); 
             }
                         
             for (var i = 0; i < enemies.Count; i++)
@@ -218,7 +240,7 @@ namespace SpaceInvaders
                 }
             }
         }
-
+        
         private void CreateBullet(GameTime gameTime)
         {
             if (gameTime.TotalGameTime - previousBulletSpawnTime > bulletSpawnTime)
@@ -232,16 +254,18 @@ namespace SpaceInvaders
             }
         }
 
-        private void CreateLasers(GameTime gameTime)
+        private void CreateLaser(GameTime gameTime,Vector2 pos)
         {
-            if (gameTime.TotalGameTime - previousBulletSpawnTime > bulletSpawnTime)
+            if (gameTime.TotalGameTime - previousLaserSpawnTime > laserSpawnTime)
             {
-                previousBulletSpawnTime = gameTime.TotalGameTime;
+                previousLaserSpawnTime = gameTime.TotalGameTime;
                 var laser = new Laser();
                 laser.Initialize(enemyLaserTexture
-                    ,new Vector2(ScreenWidth/2, ScreenHeight/2));
+                    , pos);
+                lasers.Add(laser);
             }
         }
+        
         private void InitEnemies()
         {
             for (var i = 50; i < ScreenWidth / 1.5; i += 50)
